@@ -15,11 +15,14 @@ def root():
 	
 @app.route('/chucknorris', methods = ['GET','POST'])
 def chuck():
-	u = urllib2.urlopen("https://api.chucknorris.io/jokes/random")
-	#s = u.read()
-	#d = json.loads(s)
-	#joke = d['value']
-	return render_template("chuck.html")
+	u = urllib2.urlopen("https://ghibliapi.herokuapp.com/films/12cfb892-aac0-4c5b-94af-521852e46d6a")
+	s = u.read()
+	d = json.loads(s)
+	title = d['title']
+	director = d['director']
+	date = d['release_date']
+	score = d['rt_score']
+	return render_template("ghibli.html", title = title, director = director, date = date, score = score)
 	
 if __name__ == '__main__':
     app.debug = True
